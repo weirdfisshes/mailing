@@ -61,8 +61,8 @@ sudo service redis-server start
 Клонируйте репозиторий, в корне создайте файл .env, заполнить его по образцу:
 
 ```
-TOKEN='<ваш токен>'
-URL='https://probe.fbrq.cloud/v1/send/' #URL API probe.fbrq.cloud
+TOKEN='<ваш токен для отправки сообщений через API>'
+URL='<URL сервиса отправки сообщений>'
 SECRET_KEY='<django_sekret_key>'
 ```
 Создайте и активируйте виртуальное окружение:
