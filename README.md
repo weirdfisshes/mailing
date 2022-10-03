@@ -1,56 +1,55 @@
 # Mailing
+### Description 
+Mailing with external API. Messages are sent to сlients with a specific tag and mobile code.
 
-Сервис, который по заданным правилам запускает рассылку по списку клиентов через внешний API.
-
-Реализованы следующие сущности:
-# Рассылка
-Содержит:
+There are three instances:
+# Mailing
+Attributes:
 ```
-- уникальный id рассылки;
-- дата и время запуска рассылки;
-- текст сообщения для доставки клиенту;
-- фильтр свойств клиентов, на которых должна быть произведена рассылка (код мобильного оператора, тег);
-- дата и время окончания рассылки: если по каким-то причинам не успели разослать все сообщения - никакие сообщения клиентам после этого времени доставляться не должны.
-```
-
-# Клиент
-Содержит:
-```
-- уникальный id клиента;
-- номер телефона клиента в формате 7XXXXXXXXXX (X - цифра от 0 до 9);
-- код мобильного оператора;
-- тег (произвольная метка);
-- часовой пояс.
+- unique id;
+- time and date of the start;
+- text message;
+- filter (tag or mobile code);
+- time and date of the end.
 ```
 
-# Сообщение
-Содержит:
+# Client
+Attributes:
 ```
-- уникальный id сообщения;
-- дата и время создания (отправки);
-- статус отправки;
-- id рассылки, в рамках которой было отправлено сообщение;
-- id клиента, которому отправили.
-```
-
-# С помощью API можно
-```
-- добавить нового клиента в справочник со всеми его атрибутами;
-- обновить данные атрибутов клиента;
-- удалить клиента из справочника;
-- добавить новую рассылку со всеми её атрибутами;
-- получить общую статистику по созданным рассылкам и количеству отправленных сообщений по ним с группировкой по статусам;
-- получить детальную статистику отправленных сообщений по конкретной рассылке;
-- обновить атрибуты рассылки;
-- удалить рассылки;
-- обработать активные рассылки и отправить сообщения клиентам.
+- unique id;
+- phone number in 7XXXXXXXXXX format;
+- mobile code;
+- tag;
+- timezone.
 ```
 
-Реализовано откладывание запросов при неуспехе.
+# Message
+Attributes:
+```
+- unique id;
+- sending time and date;
+- status;
+- mailing id;
+- client id.
+```
 
-### Как запустить проект:
+# You can:
+```
+- add new clients;
+- update clients;
+- delete clients;
+- add new mailings;
+- get statistics for mailings;
+- update mailings;
+- delete mailings;
+- send messages.
+```
 
-Установите и запустите Redis на своем локальном сервере:
+If the request failed, it will be postponed.
+
+### Getting started
+
+Install and run Redis:
 
 ```
 sudo apt-get update
@@ -58,14 +57,14 @@ sudo apt-get install redis
 sudo service redis-server start
 ```
 
-Клонируйте репозиторий, в корне создайте файл .env, заполнить его по образцу:
+Clone this repository, create file '.env' in the project directory with variables:
 
 ```
-TOKEN='<ваш токен для отправки сообщений через API>'
-URL='<URL сервиса отправки сообщений>'
+TOKEN='<your API token>'
+URL='<API URL>'
 SECRET_KEY='<django_sekret_key>'
 ```
-Создайте и активируйте виртуальное окружение:
+Create and activate virtual environment:
 
 ```
 py -3.10 -m venv venv
@@ -73,72 +72,72 @@ source venv/Scripts/activate
 
 ```
 
-Установите зависимости из файла req.pip:
+Install required packages from req.pip:
 
 ```
 pip install -r req.pip
 ```
 
-Перейдите в папку с manage.py и выполните миграции:
+Apply migrations:
 
 ```
 py manage.py migrate
 ```
 
-Создайте суперюзера:
+Create a superuser:
 
 ```
 py manage.py createsuperuser
 
 ```
 
-Запустите проект:
+Run the project:
 
 ```
 py manage.py runserver
 
 ```
 
-Запустите Celery из папки mailing/mailing, например, в Windows (WSL):
+Run Celery. for example (Windows):
 
 ```
 celery -A mailing worker --loglevel=info --pool=solo
 
 ```
-Запустите Flower:
+Run Flower:
 
 ```
 celery -A mailing flower --port=5555
 
 ```
 
-Проект будет доступен по адресу:
+Project URL:
 
 ```
 http://127.0.0.1:8000/
 
 ```
 
-Админ-панель доступна по адресу:
+Admin panel URL:
 
 ```
 http://127.0.0.1:8000/admin
 ```
 
-Документация к API доступна по адресу:
+API documentation:
 
 ```
 http://127.0.0.1:8000/swagger/
 ```
 
-Создайте тестовых клиентов и рассылки через Postman или админ-панель.
-За статусом рассылок и сообщений можно следить по адресу http://127.0.0.1:5555/ (flower), через Postman (эндпоинты в http://127.0.0.1:8000/swagger/), либо через админ-панель
+Create clients and mailings (Postman or Admin panel).
+You can see satus of mailings via Flower (http://127.0.0.1:5555/), Postman (see API documentation http://127.0.0.1:8000/swagger/) or admin panel.
 
 
-### Технологии:
+### Tech stack
 
 Python 3.10, Django, DRF, Celery, Redis, Swagger, Flower, dotenv
 
-### Автор:
+### Author
 
-Никита Бурцев (https://t.me/telekasster)
+Nikita Burtsev (https://t.me/telekasster)
