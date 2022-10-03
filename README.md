@@ -87,7 +87,6 @@ Create a superuser:
 
 ```
 py manage.py createsuperuser
-
 ```
 
 Run the project:
@@ -111,7 +110,6 @@ Project URL:
 
 ```
 http://127.0.0.1:8000/
-
 ```
 
 Admin panel URL:
