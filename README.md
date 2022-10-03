@@ -69,7 +69,6 @@ Create and activate virtual environment:
 ```
 py -3.10 -m venv venv
 source venv/Scripts/activate
-
 ```
 
 Install required packages from req.pip:
@@ -95,20 +94,17 @@ Run the project:
 
 ```
 py manage.py runserver
-
 ```
 
 Run Celery. for example (Windows):
 
 ```
 celery -A mailing worker --loglevel=info --pool=solo
-
 ```
 Run Flower:
 
 ```
 celery -A mailing flower --port=5555
-
 ```
 
 Project URL:
