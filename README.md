@@ -45,7 +45,7 @@ Attributes:
 - send messages.
 ```
 
-If the request failed, it will be postponed.
+If the request fails, it will be postponed.
 
 ### Getting started
 
