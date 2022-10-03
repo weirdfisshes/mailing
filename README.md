@@ -1,13 +1,6 @@
 # Mailing
 ### Description 
 Mailing with external API. Messages are sent to сlients with a specific tag and mobile code.
-
-### Tech stack
-Python 3.10, Django, DRF, Celery, Redis, Swagger, Flower, dotenv
-
-### Author
-Nikita Burtsev (https://t.me/telekasster)
-
 There are three instances:
 # Mailing
 Attributes:
@@ -132,3 +125,10 @@ http://127.0.0.1:8000/swagger/
 
 Create clients and mailings (Postman or Admin panel).
 You can see satus of mailings via Flower (http://127.0.0.1:5555/), Postman (see API documentation http://127.0.0.1:8000/swagger/) or admin panel.
+
+### Tech stack
+Python 3.10, Django, DRF, Celery, Redis, Swagger, Flower, dotenv
+
+### Author
+Nikita Burtsev (https://t.me/telekasster)
+
